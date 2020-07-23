@@ -1,2 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
-<h1>Hello</h1>
+<html>
+	<head>
+		<title>Random Episode Generator</title>
+		<link rel="stylesheet" href="{% static 'js/app.js' %}">
+		<link rel="stylesheet" href="{% static 'css/generator.html' %}">
+	</head>
+	<body>
+		<h1>Random Episode Generator / The Office</h1>
+		<div id="epDisplay">
+		</div>
+		<button onclick="newEp()">New Episode</button>
+	</body>
+</html>
