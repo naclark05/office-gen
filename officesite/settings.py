@@ -9,14 +9,15 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 import django_heroku
 import os
 import json
 from django.core.exceptions import ImproperlyConfigured
-import environ
-env = environ.Env()
-environ.Env.read_env()
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'officedb',
         'USER': 'nikki',
-        'PASSWORD': env("DATABASE_PASSWORD"),
+        'PASSWORD': env("PASSWORD"),
         'HOST': 'localhost',
         'POST': '',
     }
