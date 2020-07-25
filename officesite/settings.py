@@ -16,6 +16,8 @@ environ.Env.read_env()
 import django_heroku
 import os
 from django.core.exceptions import ImproperlyConfigured
+from dotenv import load_dotenv
+load_dotenv()
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -33,9 +35,9 @@ SECRET_KEY = env("SECRET_KEY")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env.db("DB_NAME"),
+        'NAME': os.getenv("DB_NAME"),
         'USER': 'nikki',
-        'PASSWORD': env.db("DB_PASSWORD"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
         'HOST': 'localhost',
         'POST': '',
     }
