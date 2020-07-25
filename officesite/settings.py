@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ("SECRET_KEY")
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -34,9 +34,9 @@ SECRET_KEY = os.environ("SECRET_KEY")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ("DB_NAME"),
+        'NAME': os.environ["DB_NAME"],
         'USER': 'nikki',
-        'PASSWORD': os.environ("DB_PASSWORD"),
+        'PASSWORD': os.environ["DB_PASSWORD"],
         'HOST': 'localhost',
         'POST': '',
     }
