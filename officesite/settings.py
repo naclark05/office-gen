@@ -15,7 +15,6 @@ environ.Env.read_env()
 
 import django_heroku
 import os
-import json
 from django.core.exceptions import ImproperlyConfigured
 
 
