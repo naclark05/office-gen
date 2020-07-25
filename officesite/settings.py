@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import environ
-env = environ.Env()
-environ.Env.read_env()
+#env = environ.Env()
+#environ.Env.read_env()
 
 import django_heroku
 import os
@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.environ("SECRET_KEY")
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -34,9 +34,9 @@ SECRET_KEY = env("SECRET_KEY")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
+        'NAME': os.environ("DB_NAME"),
         'USER': 'nikki',
-        'PASSWORD': env("DB_PASSWORD"),
+        'PASSWORD': os.environ("DB_PASSWORD"),
         'HOST': 'localhost',
         'POST': '',
     }
