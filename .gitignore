@@ -3,3 +3,6 @@ toenv
 *.pyc
 __pycache__
 secrets.json
+db.sqlite3
+.env
+.venv
