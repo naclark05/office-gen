@@ -84,9 +84,9 @@ WSGI_APPLICATION = 'officesite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'officedb',
+        'NAME': env("DB_NAME"),
         'USER': 'nikki',
-        'PASSWORD': env("PASSWORD"),
+        'PASSWORD': env("DB_PASSWORD"),
         'HOST': 'localhost',
         'POST': '',
     }
