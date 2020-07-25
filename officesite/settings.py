@@ -28,6 +28,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env("DB_NAME"),
+        'USER': 'nikki',
+        'PASSWORD': env("DB_PASSWORD"),
+        'HOST': 'localhost',
+        'POST': '',
+    }
+}
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -77,20 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'officesite.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': 'nikki',
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': 'localhost',
-        'POST': '',
-    }
-}
 
 
 # Password validation
