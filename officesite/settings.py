@@ -11,45 +11,37 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 
-import django_heroku
-import os
-from django.core.exceptions import ImproperlyConfigured
-from dotenv import load_dotenv
-load_dotenv()
+from configurations import Configuration, values
 
+class Base(Configuration):
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    from dotenv import load_dotenv # environment variables for secrets
+    load_dotenv()
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+    
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+    import os
+    from django.core.exceptions import ImproperlyConfigured
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DATABASES = {
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv("DB_NAME"),
         'USER': 'nikki',
         'PASSWORD': os.getenv("DB_PASSWORD"),
         'HOST': 'localhost',
-        'POST': '',
+        'PORT': '',
+        }
     }
-}
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+    #import dj_database_url
+    #DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = []
 
-
-# Application definition
-
-INSTALLED_APPS = [
+    INSTALLED_APPS = [
     'offgen',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,10 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    ]
 
-]
-
-MIDDLEWARE = [
+    MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,12 +59,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    ]
 
-ROOT_URLCONF = 'officesite.urls'
+    ROOT_URLCONF = 'officesite.urls'
 
-TEMPLATES = [
-    {
+    TEMPLATES = [
+        {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['offgen/templates'],
         'APP_DIRS': True,
@@ -86,16 +77,11 @@ TEMPLATES = [
             ],
         },
     },
-]
+    ]
 
-WSGI_APPLICATION = 'officesite.wsgi.application'
+    WSGI_APPLICATION = 'officesite.wsgi.application'
 
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
+    AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -108,35 +94,81 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-]
+    ]
+
+    LANGUAGE_CODE = 'en-us'
+
+    TIME_ZONE = 'UTC'
+
+    USE_I18N = True
+
+    USE_L10N = True
+
+    USE_TZ = True
+
+    
+
+    STATIC_URL = '/static/'
+    STATIC_ROOT = ''
+    STATICFILES_DIRS = ['/Users/nikclarks/djproj/officesite/offgen/static/']
+
+
+
+
+class Dev(Base):
+    DEBUG = True
+    SECRET_KEY = values.Value("SECRET_KEY")
+
+
+class Prod(Base):
+
+    #import django_heroku # for heroku dev
+    
+    #django_heroku.settings(locals()) # activate django-heroku
+
+    DEBUG = False
+
+
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+
+
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+
+# SECURITY WARNING: don't run with debug turned on in production!
+
+
+
+
+# Application definition
+
+
+
+
+
+# Password validation
+# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+
+
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = ''
-STATICFILES_DIRS = ['/Users/nikclarks/djproj/officesite/offgen/static/']
 
 
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-#activate django-heroku
-django_heroku.settings(locals())
+
 
 
