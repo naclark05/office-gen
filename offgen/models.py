@@ -9,5 +9,8 @@ class Episode(models.Model):
 	season = models.IntegerField()
 	epnum = models.IntegerField()
 
+	def __str__(self):
+		return self.epname
+
 
 

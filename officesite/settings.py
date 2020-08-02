@@ -16,7 +16,7 @@ from configurations import Configuration, values
 class Base(Configuration):
 
     from dotenv import load_dotenv # environment variables for secrets
-    load_dotenv()
+    load_dotenv() # loads env vars
 
     
 
