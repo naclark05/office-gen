@@ -1,13 +1,144 @@
-#h1 {
+html, body {
 	font-family: 'Cabin', sans-serif;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #b8e4f2;
+}
+
+
+h1 {
+	font-size: 5vw;
+	margin-left: 10%;
+
+}
+
+h2 {
 	text-align: center;
 }
 
-#h2 {
-	font-family: 'Cabin', sans-serif;
-	text-align: center
+a {
+	text-decoration: none;
 }
 
-.btn {
+#caution {
+	margin-left: 80%;
+	margin-bottom: -2.5%;
+	font-size: 2vw;
+	position: static;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: auto 1fr;
+	width: 100%;
+	background-color: #b8e4f2;
+}
+
+
+.c1 {
+	margin: 0% 10% 10% 10%;
+	padding: 2% 2% 2% 2%;
+	background-color: white;
+	border-radius: 50px;
+	font-size: 5vw;
+
+}
+
+.c1 p {
+	text-align: center;
+}
+
+
+.c2 {
+	border: 2px solid black;
+	border-radius: 25px;
+	width: 35%;
+	font-size: 8vw;
+
+	text-align: center;
+	position: fixed;
+	top: 65%;
+	left: 30%;
+	padding: 10px 10px 10px 10px;
+
+
+	background-image: linear-gradient(45deg, #cc53af, #afcc53);
+	background-size: 100%;
+	background-repeat: repeat;
+
+	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent; 
+  	-moz-background-clip: text;
+  	-moz-text-fill-color: transparent;
+  	animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
+}
+
+.c2:hover {
+	animation: rainbow-text-simple-animation 0.5s ease-in forwards;
+	cursor: pointer;
+}
+
+@keyframes rainbow-text-simple-animation-rev {
+    0% {
+        background-size: 650%;
+    }
+    40% {
+        background-size: 650%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+
+/* Move the background and make it larger. */
+/* Animation shown when hovering over the text. */
+@keyframes rainbow-text-simple-animation {
+    0% {
+        background-size: 100%;
+    }
+    80% {
+        background-size: 650%;
+    }
+    100% {
+        background-size: 650%;
+    }
+}
+/* mobile devices */
+@media only screen and (max-width: 600px) {
+	.container {
+		width: 100%;
+	}
+
+}
+
+@media only screen and (min-width: 600px) {
+	.c1 {
+		font-size: 5vw;
+	}
+}
+/* laptops and large screens */
+@media only screen and (min-width: 992px) {
+	.c1 {
+		margin-left: 35%;
+		margin-bottom: 5%;
+		max-width: 25vw;
+
+		font-size: 1.5vw;
+
+	}
+	.c2 {
+		/* change button placement */
+		top: 80%;
+		left: 43%;
+		width: 10%;
+
+		position: fixed;
+
+		font-size: 2vw;
+
+	}
 
 }

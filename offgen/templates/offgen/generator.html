@@ -3,21 +3,42 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+		<script type="text/javascript"></script>
+
 		<title>Random Episode Generator</title>
-		<link rel="stylesheet" href="{% static 'css/generator.html' %}">
+
+		<link rel="stylesheet" type="text/css" href="{% static 'css/generator.css' %}">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@600&display=swap"> 
 	</head>
-	<body>
-		<h1>random episode generator: the office</h1>
-		<div id="epDisplay"> <!-- display ep num -->
-			
-			<h2 class="epdesc">S{{ episodes.season }}E{{ episodes.epnum }}: {{ episodes }}</h2>
-			<p>{{ episodes.epdesc }}</p>
-			<a class="btn btn-1" href="{% url 'generator' %}">generate new episode</a>
+
+{% block content %}
+
+		<div class="container">
+
+
+			<header class="box box1">
+				<p id="caution">*spoilers</p>
+				<h1>random episode generator: the office</h1>
+			</header>
+
+			<div class="box box2">	
+				<div class="child c1">
+					<p>Click below to randomly generate an episode of The Office.</p>
+				</div>
+				<a class="child c2" id="new-episode">generate episode</a>
+			</div>
+
+
 		</div>
-	</body>
+
+
+{% endblock %}
+
 	<footer>
-		<script src="{% static 'js/app.js' %}"></script>
-		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	</footer>
 </html>

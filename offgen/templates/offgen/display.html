@@ -1,0 +1,11 @@
+{% extends 'offgen/generator.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/display.css' %}">
+<div class="box box3">
+	<p>you should watch...</p>
+	<h2>S{{ episodes.season }}E{{ episodes.epnum }}: {{ episodes }}</h2>
+	<p>{{ episodes.epdesc }}</p>
+</div>
+{% endblock %}

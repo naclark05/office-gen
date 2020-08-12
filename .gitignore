@@ -6,3 +6,4 @@ secrets.json
 db.sqlite3
 .env
 .venv
+node_modules

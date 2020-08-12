@@ -66,7 +66,7 @@ class Base(Configuration):
     TEMPLATES = [
         {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['offgen/templates'],
+        'DIRS': ['offgen/templates/offgen'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
