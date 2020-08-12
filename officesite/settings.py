@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 from configurations import Configuration, values
 
+# base settings
 class Base(Configuration):
 
     from dotenv import load_dotenv # environment variables for secrets
@@ -114,17 +115,17 @@ class Base(Configuration):
 
 
 
-
+# dev settings
 class Dev(Base):
     DEBUG = True
     SECRET_KEY = values.Value("SECRET_KEY")
 
-
+# deploy settings
 class Prod(Base):
 
-    #import django_heroku # for heroku dev
+    import django_heroku # for heroku dev
     
-    #django_heroku.settings(locals()) # activate django-heroku
+    django_heroku.settings(locals()) # activate django-heroku
 
     DEBUG = False
 
