@@ -128,7 +128,7 @@ class Dev(Base):
 class Prod(Base):
     
 
-    DEBUG = False
+    DEBUG = True
 
 
     
