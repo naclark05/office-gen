@@ -16,6 +16,8 @@ from configurations import Configuration, values
 # base settings
 class Base(Configuration):
 
+    import django_heroku # for heroku dev
+
     from dotenv import load_dotenv # environment variables for secrets
     load_dotenv() # loads env vars
 
@@ -38,9 +40,6 @@ class Base(Configuration):
         }
     }
 
-    import dj_database_url
-
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
     ALLOWED_HOSTS = []
 
@@ -115,7 +114,10 @@ class Base(Configuration):
     STATIC_ROOT = ''
     STATICFILES_DIRS = ['/Users/nikclarks/djproj/officesite/offgen/static/']
 
+    import dj_database_url
 
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    django_heroku.settings(locals()) # activate django-heroku
 
 # dev settings
 class Dev(Base):
@@ -124,14 +126,12 @@ class Dev(Base):
 
 # deploy settings
 class Prod(Base):
-
-    import django_heroku # for heroku dev
     
 
     DEBUG = False
 
 
-    django_heroku.settings(locals()) # activate django-heroku
+    
 
 
     
