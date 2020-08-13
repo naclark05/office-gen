@@ -19,8 +19,6 @@ class Base(Configuration):
     from dotenv import load_dotenv # environment variables for secrets
     load_dotenv() # loads env vars
 
-    
-
     import os
     from django.core.exceptions import ImproperlyConfigured
 
@@ -127,13 +125,14 @@ class Prod(Base):
 
     import django_heroku # for heroku dev
     
-    django_heroku.settings(locals()) # activate django-heroku
 
     DEBUG = False
-    
+
     import dj_database_url
 
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+    django_heroku.settings(locals()) # activate django-heroku
 
 
     
