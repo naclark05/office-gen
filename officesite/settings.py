@@ -135,7 +135,7 @@ class Dev(Base):
 # deploy settings
 class Prod(Base):
     
-    DEBUG = True
+    DEBUG = False
 
 
     
