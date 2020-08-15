@@ -132,7 +132,7 @@ class Dev(Base):
 # deploy settings
 class Prod(Base):
     
-
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     DEBUG = True
 
 
