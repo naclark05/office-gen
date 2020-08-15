@@ -21,7 +21,7 @@ class Base(Configuration):
     from dotenv import load_dotenv # environment variables for secrets
     load_dotenv() # loads env vars
 
-    import os
+
     from django.core.exceptions import ImproperlyConfigured
 
 
@@ -131,7 +131,7 @@ class Dev(Base):
 
 # deploy settings
 class Prod(Base):
-    
+    import os
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     DEBUG = True
 
