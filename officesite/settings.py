@@ -21,7 +21,7 @@ class Base(Configuration):
     from dotenv import load_dotenv # environment variables for secrets
     load_dotenv() # loads env vars
 
-
+    import os
     from django.core.exceptions import ImproperlyConfigured
 
 
