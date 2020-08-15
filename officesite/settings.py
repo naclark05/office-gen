@@ -123,18 +123,6 @@ class Base(Configuration):
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' #heroku 
     COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-    import dj_database_url # heroku
-
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-    django_heroku.settings(locals()) # activate django-heroku
-
-# dev settings
-class Dev(Base):
-    DEBUG = True
-    SECRET_KEY = values.Value("SECRET_KEY")
-
-# deploy settings
-class Prod(Base):
     # read errors while debug is false for heroku
     LOGGING = {
         'version': 1,
@@ -169,6 +157,20 @@ class Prod(Base):
         }
     }
     DEBUG_PROPAGATE_EXCEPTIONS = True # heroku prod
+
+    import dj_database_url # heroku
+
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    django_heroku.settings(locals()) # activate django-heroku
+
+# dev settings
+class Dev(Base):
+    DEBUG = True
+    SECRET_KEY = values.Value("SECRET_KEY")
+
+# deploy settings
+class Prod(Base):
+
     DEBUG = False # heroku prod
 
 
