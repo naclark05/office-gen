@@ -120,6 +120,7 @@ class Base(Configuration):
     STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     ) #dev: ['/Users/nikclarks/djproj/officesite/offgen/static/']
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     import dj_database_url
 
