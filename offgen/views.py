@@ -10,9 +10,12 @@ def generator(request): # base view
 	return render(request, 'offgen/generator.html')
 
 def display(request): # call this view when clicking generator button
-	context = {
-	 'episodes': Episode.objects.get(id=random.randint(3,190))
-	}
+	try:
+		context = {
+	 	'episodes': Episode.objects.get(id=random.randint(3,190))
+		}
+	except Episode.DoesNotExist:
+		pass
 	return render(request, 'offgen/display.html', context)
 
 
