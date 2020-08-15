@@ -116,8 +116,10 @@ class Base(Configuration):
     
 
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_DIRS = ['/Users/nikclarks/djproj/officesite/offgen/static/']
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #dev: ''
+    STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    ) #dev: ['/Users/nikclarks/djproj/officesite/offgen/static/']
 
     import dj_database_url
 
