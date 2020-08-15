@@ -120,9 +120,10 @@ class Base(Configuration):
     STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     ) #dev: ['/Users/nikclarks/djproj/officesite/offgen/static/']
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' #heroku 
+    COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-    import dj_database_url
+    import dj_database_url # heroku
 
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
     django_heroku.settings(locals()) # activate django-heroku
@@ -134,40 +135,41 @@ class Dev(Base):
 
 # deploy settings
 class Prod(Base):
+    # read errors while debug is false for heroku
     LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
-                       'pathname=%(pathname)s lineno=%(lineno)s ' +
-                       'funcname=%(funcName)s %(message)s'),
-            'datefmt': '%Y-%m-%d %H:%M:%S'
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                           'pathname=%(pathname)s lineno=%(lineno)s ' +
+                           'funcname=%(funcName)s %(message)s'),
+                'datefmt': '%Y-%m-%d %H:%M:%S'
+            },
+            'simple': {
+                'format': '%(levelname)s %(message)s'
+            }
         },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        }
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
+        'handlers': {
+            'null': {
+                'level': 'DEBUG',
+                'class': 'logging.NullHandler',
+            },
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+            }
         },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        'testlogger': {
-            'handlers': ['console'],
-            'level': 'INFO',
+        'loggers': {
+            'testlogger': {
+                'handlers': ['console'],
+                'level': 'INFO',
+            }
         }
     }
-}
-    DEBUG_PROPAGATE_EXCEPTIONS = True
-    DEBUG = False
+    DEBUG_PROPAGATE_EXCEPTIONS = True # heroku prod
+    DEBUG = False # heroku prod
 
 
     
